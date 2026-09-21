@@ -129,12 +129,39 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   transition: var(--transition), box-shadow 0.25s ease;
 }
 .navbar.scrolled { box-shadow: var(--shadow-header); }
-.navbar .site-name { font-size: 19px; font-weight: 700; color: var(--text); letter-spacing: -0.2px; white-space: nowrap; flex-shrink: 0; }
-.navbar nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
-.navbar nav a { font-size: 14px; font-weight: 600; color: var(--text-secondary); padding: 6px 11px; border-radius: 6px; transition: color 0.2s; position: relative; }
+.navbar .site-name { font-size: 23px; font-weight: 700; color: var(--text); letter-spacing: -0.2px; white-space: nowrap; flex-shrink: 0; }
+.navbar nav {
+  display: flex; align-items: center; gap: 2px; margin-left: auto; min-width: 0;
+  overflow-x: auto; white-space: nowrap; scrollbar-width: none; -ms-overflow-style: none;
+}
+.navbar nav::-webkit-scrollbar { display: none; }
+.navbar nav a { font-size: 14px; font-weight: 600; color: var(--text-secondary); padding: 6px 9px; border-radius: 6px; transition: color 0.2s; position: relative; flex-shrink: 0; }
 .navbar nav a:hover, .navbar nav a.active { color: var(--text); }
-.navbar nav a.active::after { content: ""; position: absolute; bottom: -1px; left: 11px; right: 11px; height: 2px; background: var(--accent); border-radius: 1px; }
+.navbar nav a.active::after { content: ""; position: absolute; bottom: -1px; left: 9px; right: 9px; height: 2px; background: var(--accent); border-radius: 1px; }
 .nav-actions { display: flex; align-items: center; margin-left: 12px; }
+
+/* "Others" dropdown */
+.nav-group { position: relative; flex-shrink: 0; margin-left: 2px; }
+.nav-group-btn {
+  appearance: none; background: none; border: 0; font: inherit; font-size: 14px; font-weight: 600;
+  color: var(--text-secondary); padding: 6px 9px; border-radius: 6px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 4px; position: relative; transition: color 0.2s;
+}
+.nav-group-btn svg { width: 12px; height: 12px; transition: transform 0.2s ease; }
+.nav-group:hover .nav-group-btn, .nav-group.open .nav-group-btn, .nav-group-btn.active { color: var(--text); }
+.nav-group:hover .nav-group-btn svg, .nav-group.open .nav-group-btn svg { transform: rotate(180deg); }
+.nav-group-btn.active::after { content: ""; position: absolute; bottom: -1px; left: 9px; right: 9px; height: 2px; background: var(--accent); border-radius: 1px; }
+.nav-menu {
+  position: absolute; top: calc(100% + 6px); right: 0; min-width: 160px; z-index: 110;
+  display: none; flex-direction: column; padding: 6px;
+  background: var(--bg-button); border: 1px solid var(--border); border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+}
+.nav-group::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 8px; }
+.nav-group:hover .nav-menu, .nav-group.open .nav-menu, .nav-group:focus-within .nav-menu { display: flex; }
+.nav-menu a { display: block; font-size: 13.5px; font-weight: 500; color: var(--text-muted); padding: 7px 10px; border-radius: 6px; }
+.nav-menu a:hover { color: var(--text); background: var(--bg-tag); }
+.nav-menu a.active { color: var(--accent); font-weight: 600; background: var(--accent-light); }
 
 .theme-toggle {
   appearance: none; border: 1px solid var(--border); background: transparent; color: var(--text);
@@ -157,8 +184,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .page-container { max-width: 900px; margin: 0 auto; padding: 48px 48px 60px; }
 
 /* ── Hero: 2 columns ── */
-.top-hero { display: grid; grid-template-columns: min(23vw, 210px) 1fr; column-gap: 52px; margin-bottom: 28px; }
-.left-col { display: flex; flex-direction: column; align-items: flex-start; padding-top: 3px; }
+.top-hero { display: grid; grid-template-columns: min(25vw, 230px) 1fr; column-gap: 32px; margin-bottom: 28px; }
+.left-col { display: flex; flex-direction: column; align-items: flex-start; padding-top: 23px; }
 .right-col { min-width: 0; }
 
 .avatar-frame {
@@ -312,8 +339,10 @@ section h2 + * { margin-top: 20px; }
 }
 @media (max-width: 640px) {
   .navbar { padding: 0 14px; }
-  .navbar .site-name { font-size: 14px; }
+  .navbar .site-name { font-size: 14px; margin-right: 8px; }
   .navbar nav { gap: 0; }
+  .nav-group-btn { padding: 4px 6px; font-size: 12px; font-weight: 500; }
+  .nav-group-btn svg { width: 10px; height: 10px; }
   .navbar nav a { padding: 4px 6px; font-size: 12px; font-weight: 500; }
   .theme-toggle { width: 26px; height: 26px; }
   .theme-toggle svg { width: 13px; height: 13px; }
@@ -338,9 +367,22 @@ section h2 + * { margin-top: 20px; }
   <span class="site-name">Che-Sang Park</span>
   <nav>
     <a href="#about" class="active">About</a>
-    <a href="#updates">Updates</a>
+    <a href="#research-interest">Research</a>
     <a href="#publications">Publications</a>
+    <a href="#projects">Projects</a>
   </nav>
+  <div class="nav-group" id="nav-others">
+    <button type="button" class="nav-group-btn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-others-menu">
+      Others
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="nav-menu" id="nav-others-menu" role="menu">
+      <a href="#education" role="menuitem">Education</a>
+      <a href="#experience" role="menuitem">Experience</a>
+      <a href="#honors" role="menuitem">Honors</a>
+      <a href="#teaching" role="menuitem">Teaching</a>
+    </div>
+  </div>
   <div class="nav-actions">
     <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -743,9 +785,33 @@ section h2 + * { margin-top: 20px; }
   /* sticky nav shadow + active link */
   var header = document.querySelector('header.site-header');
   var sections = document.querySelectorAll('section[id], .top-hero[id]');
-  var navLinks = document.querySelectorAll('.navbar nav a');
+  var navLinks = document.querySelectorAll('.navbar nav a, .navbar .nav-menu a');
+  var group = document.getElementById('nav-others');
+  var groupBtn = group ? group.querySelector('.nav-group-btn') : null;
   function setActive(id) {
-    navLinks.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + id); });
+    var inGroup = false;
+    navLinks.forEach(function (l) {
+      var on = l.getAttribute('href') === '#' + id;
+      l.classList.toggle('active', on);
+      if (on && l.closest('.nav-menu')) inGroup = true;
+    });
+    if (groupBtn) groupBtn.classList.toggle('active', inGroup);
+  }
+  if (group && groupBtn) {
+    groupBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = group.classList.toggle('open');
+      groupBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    group.querySelectorAll('.nav-menu a').forEach(function (a) {
+      a.addEventListener('click', function () { group.classList.remove('open'); groupBtn.setAttribute('aria-expanded', 'false'); groupBtn.blur(); a.blur(); });
+    });
+    document.addEventListener('click', function (e) {
+      if (!group.contains(e.target)) { group.classList.remove('open'); groupBtn.setAttribute('aria-expanded', 'false'); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { group.classList.remove('open'); groupBtn.setAttribute('aria-expanded', 'false'); groupBtn.blur(); }
+    });
   }
   function onScroll() {
     if (header) header.classList.toggle('scrolled', window.scrollY > 4);
@@ -756,7 +822,7 @@ section h2 + * { margin-top: 20px; }
     } else {
       sections.forEach(function (sec) { if (window.scrollY >= sec.offsetTop - 100) current = sec.id; });
     }
-    if (current === 'research-interest') current = 'about';
+    if (current === 'updates') current = 'research-interest';
     if (current) setActive(current);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
