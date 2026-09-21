@@ -279,6 +279,23 @@ section h2 + * { margin-top: 20px; }
 }
 .pubfigure-placeholder span { background: var(--bg-placeholder); padding: 3px 8px; border-radius: 4px; }
 .pub-content-wrapper { min-width: 0; }
+.section-header {
+  display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap;
+  gap: 4px 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+.section-header h2 { padding-bottom: 0; border-bottom: none; }
+.section-header + * { margin-top: 20px; }
+.pub-legend { font-size: 14px; font-weight: 500; color: var(--text-muted); line-height: 1.4; }
+.pub-legend b { color: var(--accent); font-weight: 700; margin-right: 3px; }
+.legend-sep { margin: 0 7px; opacity: 0.5; }
+
+.pub-mark {
+  display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.02em;
+  color: var(--accent); border: 1px solid var(--accent); border-radius: 5px;
+  padding: 3px 7px; margin-right: 7px; vertical-align: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
 .pub-venue {
   display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.03em;
   color: var(--accent); background: var(--bg-venue); padding: 5px 14px; border-radius: 100px; margin-bottom: 10px;
@@ -350,6 +367,8 @@ section h2 + * { margin-top: 20px; }
   .pub-item-wrapper { grid-template-columns: 1fr; row-gap: 12px; }
   .pubfigure { max-width: 320px; margin: 0 auto; }
   .pub-venue { font-size: 11px; padding: 4px 10px; }
+  .pub-mark { font-size: 10.5px; padding: 2px 6px; margin-right: 5px; }
+  .pub-legend { font-size: 12.5px; }
   .footer { padding: 24px 20px 32px; }
   b, strong { font-weight: 600; }
 }
@@ -461,7 +480,10 @@ section h2 + * { margin-top: 20px; }
 
   <!-- ── PUBLICATIONS ── -->
   <section id="publications">
-    <h2>Publications</h2>
+    <div class="section-header">
+      <h2>Publications</h2>
+      <p class="pub-legend"><b>C</b> Conference<span class="legend-sep">·</span><b>J</b> Journal<span class="legend-sep">·</span><b>P</b> Preprint</p>
+    </div>
     <div class="pub-container">
 
       <div class="pub-item-wrapper">
@@ -472,7 +494,7 @@ section h2 + * { margin-top: 20px; }
           </div>
         </div>
         <div class="pub-content-wrapper">
-          <span class="pub-venue">RA-L (Under Review)</span>
+          <span class="pub-mark">P1</span><span class="pub-venue">RA-L (Under Review)</span>
           <div class="pub-title"><p><b>Spatial Attention: Adapting Execution Horizons for Diffusion Policies via Observation Sensitivity</b></p></div>
           <div class="pub-author"><p><b>Che-Sang Park</b>, Junsu Ha, Jianlong Fu and Frank C. Park</p></div>
           <div class="pub-links-row">
@@ -489,7 +511,7 @@ section h2 + * { margin-top: 20px; }
           </div>
         </div>
         <div class="pub-content-wrapper">
-          <span class="pub-venue">CoRL 2026</span>
+          <span class="pub-mark">C2</span><span class="pub-venue">CoRL 2026</span>
           <div class="pub-title"><p><b>CompVLA: A Variable Compliance Vision-Language-Action Model for Contact-rich Manipulation</b></p></div>
           <div class="pub-author"><p>Jongmin Kim*, Junsu Ha*, <b>Che-Sang Park</b>*, Minchang Song, Hyeokju Jeong, Himchan Hwang, Jianlong Fu and Frank C. Park</p></div>
           <div class="pub-links-row">
@@ -508,7 +530,7 @@ section h2 + * { margin-top: 20px; }
           </div>
         </div>
         <div class="pub-content-wrapper">
-          <span class="pub-venue">AISTATS 2026</span>
+          <span class="pub-mark">C1</span><span class="pub-venue">AISTATS 2026</span>
           <div class="pub-title"><p><b>Value Gradient Sampler: Learning Invariant Value Functions for Equivariant Diffusion Sampling</b></p></div>
           <div class="pub-author"><p>Himchan Hwang, Hyeokju Jeong, Dong Kyu Shin, <b>Che-Sang Park</b>, Sehee Kweon, Sangwoong Yoon and Frank C. Park</p></div>
           <div class="pub-links-row">
@@ -526,7 +548,7 @@ section h2 + * { margin-top: 20px; }
           </div>
         </div>
         <div class="pub-content-wrapper">
-          <span class="pub-venue">RA-L 2025</span>
+          <span class="pub-mark">J1</span><span class="pub-venue">RA-L 2025</span>
           <div class="pub-title"><p><b>Diverse Policy Learning via Random Obstacle Deployment for Zero-Shot Adaptation</b></p></div>
           <div class="pub-author"><p>Seokjin Choi*, Yonghyeon Lee*, Seungyeon Kim, <b>Che-Sang Park</b>, Himchan Hwang and Frank C. Park</p></div>
           <div class="pub-links-row">
