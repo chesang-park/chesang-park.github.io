@@ -9,8 +9,8 @@
 <meta property="og:url" content="https://chesang-park.github.io">
 <meta property="og:title" content="Che-Sang Park">
 <meta property="og:site_name" content="Che-Sang Park | Academic Website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f6b46'/%3E%3Ctext x='16' y='21.5' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-weight='700' font-size='15' fill='%23fdfdfd'%3ECP%3C/text%3E%3C/svg%3E">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f6b46'/%3E%3Ctext x='16' y='21.5' text-anchor='middle' font-family='Public Sans,Arial,sans-serif' font-weight='700' font-size='15' fill='%23fdfdfd'%3ECP%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
 
 <!-- apply stored theme early to avoid a flash -->
 <script>
@@ -48,6 +48,8 @@
   --bg-venue: rgba(47, 107, 70, 0.10);
   --featured: #c14c40;
   --shadow-header: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --font-display: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+  --font-body: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   color-scheme: light;
 }
@@ -104,7 +106,7 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-body);
   background-color: var(--bg);
   color: var(--text);
   -webkit-text-size-adjust: 100%;
@@ -129,7 +131,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   transition: var(--transition), box-shadow 0.25s ease;
 }
 .navbar.scrolled { box-shadow: var(--shadow-header); }
-.navbar .site-name { font-size: 23px; font-weight: 700; color: var(--text); letter-spacing: -0.2px; white-space: nowrap; flex-shrink: 0; }
+.navbar .site-name { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--text); letter-spacing: 0; white-space: nowrap; flex-shrink: 0; }
 .navbar nav {
   display: flex; align-items: center; gap: 2px; margin-left: auto; min-width: 0;
   overflow-x: auto; white-space: nowrap; scrollbar-width: none; -ms-overflow-style: none;
@@ -196,11 +198,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .avatar-frame img.missing { display: none; }
 .avatar-initials {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  font-family: 'Manrope', 'Inter', sans-serif; font-weight: 700; font-size: 56px; letter-spacing: 0.02em;
+  font-family: var(--font-display); font-weight: 700; font-size: 56px; letter-spacing: 0.02em;
   color: var(--accent); background: var(--accent-light);
 }
 
-.intro-name { font-weight: 700; font-size: 27.5px; margin: 0 0 10px; color: var(--text); line-height: 1.0; text-wrap: balance; }
+.intro-name { font-family: var(--font-display); font-weight: 700; font-size: 30px; margin: 0 0 10px; color: var(--text); line-height: 1.0; text-wrap: balance; }
 .role-line { display: flex; align-items: baseline; margin: 0 0 14px; line-height: 1.4; }
 .role { font-size: 13.5px; font-weight: 500; color: var(--text-muted); }
 .role-sep { font-size: 13.5px; color: var(--text-secondary); margin: 0 3px 0 0; }
@@ -228,7 +230,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 /* ── Sections ── */
 section { margin-bottom: 40px; scroll-margin-top: 76px; }
 section h2 {
-  font-family: 'Manrope', 'Inter', sans-serif; font-size: 16.5px; font-weight: 700;
+  font-family: var(--font-body); font-size: 19px; font-weight: 700;
   padding-bottom: 8px; color: var(--heading); text-transform: uppercase; letter-spacing: 0.04em;
   border-bottom: 1px solid var(--border);
 }
